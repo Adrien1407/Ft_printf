@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 15:15:11 by adlancel          #+#    #+#             */
-/*   Updated: 2021/01/08 15:15:28 by adlancel         ###   ########.fr       */
+/*   Created: 2021/02/11 15:16:49 by adlancel          #+#    #+#             */
+/*   Updated: 2021/02/11 15:36:32 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../includes/printf.h"
 
-void	ft_putchar_fd(int c, int fd)
+void	ft_print_argument(va_list ap, t_list *flags)
 {
-	write(fd, &c, 1);
+	int id;
+	
+	id = flags->id;
+	if (id == 's')
+		ft_printf_putstr(va_arg(ap, char*), flags);
+	if (id == 'd')
+		ft_putnbr(va_arg(ap, int), flags);
 }

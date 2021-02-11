@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 13:54:50 by adlancel          #+#    #+#             */
-/*   Updated: 2021/01/08 15:08:30 by adlancel         ###   ########.fr       */
+/*   Created: 2021/02/11 15:14:10 by adlancel          #+#    #+#             */
+/*   Updated: 2021/02/11 15:15:06 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../includes/printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_parse_flags(const char *format, t_list *flags)
 {
-	size_t i;
-
+	int i;
+	int atoi;
 	i = 0;
-	while (s[i])
+	atoi = 0;
+
+	while (ft_is_in_charset(format[i], "0123456789"))
+	{
+		atoi = atoi * 10 + format[i] - 48;
 		i++;
+	}
+	flags->width = atoi;
+	atoi = 0;
+	if(format[i] == '.')
+	{
+		i++;
+		while (ft_is_in_charset(format[i], "0123456789"))
+		{
+			atoi = atoi * 10 + format[i] - 48;
+			i++;
+		}
+		flags->precision = atoi;
+	}
 	return (i);
 }

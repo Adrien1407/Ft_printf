@@ -6,37 +6,36 @@
 /*   By: adrienlanlan <adlancel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:00:02 by adrienlan         #+#    #+#             */
-/*   Updated: 2021/01/08 16:04:11 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:57:58 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef	PRINTF_H
 # define PRINTF_H
 
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 
 typedef	struct	s_list
 {
-	void			*content;
-	struct s_list	*next;
+	int precision;
+	int width;
+	int id;
+	int written;
 }				t_list;
 
+int				ft_parse_flags(const char *format, t_list *flags);
+int				ft_is_valid_flag(const char *format, t_list *flags);
+void			ft_print_argument(va_list ap, t_list *flags);
+int				ft_is_in_charset(char c, char *str);
 int				ft_count_digits(long int n);
-int				ft_atoi(const char *str);
-void			ft_putnbr_base(int nbr, char *base);
-int				checkbase(char *base);
 size_t			ft_strlen(const char *s);
-void			ft_putnbr(int c);
+void			ft_putnbr(long c, t_list *flags);
 int				ft_count_digits(long int n);
-int				ft_atoi(const char *str);
-void			ft_putchar(int c);
-void			ft_putchar_fd(int c, int fd);
-void			ft_putstr(const char *s);
-void			ft_putstr_fd(const char *s, int fd);
-char			*ft_strdup(const char *s1);
-void			*ft_calloc(size_t count, size_t size);
+void			ft_putchar_printf(int c, t_list *flags);
+void			ft_printf_putstr(const char *s, t_list *flags);
+int				ft_printf(const char *format, ...);
 #endif
