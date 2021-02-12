@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:57:31 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/12 18:40:21 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:45:14 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 	if (!flags)
 		return (0);
 	va_start(ap, format);
-	flags->precision = -0;
+	flags->precision = 0;
 	flags->width = 0;
 	flags->id = 0;
 	flags->left = 0;
