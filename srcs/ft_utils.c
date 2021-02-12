@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:50:25 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/11 15:20:59 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:17:51 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ void	ft_putchar_printf(int c, t_list *flags)
 {
 	write(1, &c, 1);
 	flags->written++;
+}
+
+void	ft_process_flags(t_list *flags)
+{
+	if (flags->width < 0)
+	{
+		flags->left = -flags->width;
+		flags->width = 0;
+	}
 }

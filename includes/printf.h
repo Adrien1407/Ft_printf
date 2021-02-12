@@ -6,7 +6,7 @@
 /*   By: adrienlanlan <adlancel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:00:02 by adrienlan         #+#    #+#             */
-/*   Updated: 2021/02/11 15:57:58 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 17:30:28 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 typedef	struct	s_list
 {
 	int precision;
+	int left;
+	int zero;
 	int width;
 	int id;
 	int written;
 }				t_list;
-
+void			ft_process_flags(t_list *flags);
 int				ft_parse_flags(const char *format, t_list *flags);
 int				ft_is_valid_flag(const char *format, t_list *flags);
 void			ft_print_argument(va_list ap, t_list *flags);

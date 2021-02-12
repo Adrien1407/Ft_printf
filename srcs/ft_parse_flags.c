@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:14:10 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/11 15:15:06 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:01:24 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,29 @@ int	ft_parse_flags(const char *format, t_list *flags)
 	i = 0;
 	atoi = 0;
 
+	while (format[i] == '-' || format[i] == '0')
+	{
+		if (format[i] == '-')
+		{
+			flags->left = 1;
+			flags->zero = 0;
+		}
+		if (format[i] == '0' && !flags->left)
+		{
+			flags->zero = 1;
+		}
+		i++;
+	}
 	while (ft_is_in_charset(format[i], "0123456789"))
 	{
 		atoi = atoi * 10 + format[i] - 48;
 		i++;
 	}
+	if (flags->left)
+	flags->left = atoi;
+	else if (flags->zero)
+	flags->zero = atoi;
+	else 
 	flags->width = atoi;
 	atoi = 0;
 	if(format[i] == '.')
@@ -36,5 +54,6 @@ int	ft_parse_flags(const char *format, t_list *flags)
 		}
 		flags->precision = atoi;
 	}
+	ft_process_flags(flags);
 	return (i);
 }

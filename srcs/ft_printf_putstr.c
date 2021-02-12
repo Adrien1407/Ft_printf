@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:15:48 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/11 15:34:21 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:26:51 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,41 @@ void		ft_printf_putstr(const char *str, t_list *flags)
 {
 	int i;
 	int len;
+	int n;
 
 	len = ft_strlen(str);
+	n = ((flags->zero + flags->left + flags->width) - len);
 	i = 0;
-	if (flags->precision < len)
+	if (flags->precision > -1 && flags->precision < len)
 		len = flags->precision;
-	if (flags->width > len)
+
+	if(flags->width)
 	{
-		flags->width = flags->width - len;
-		while(flags->width)
+		while (n && n > 0)
 		{
-			write(1, " ", 1);
-			flags->width--;
+			ft_putchar_printf(' ', flags);
+			n--;
 		}
 	}
-	while (str[i] && i < len)
+	if (flags->zero)
 	{
-		write(1, &str[i], 1);
+		while (n && n > 0)
+		{
+			ft_putchar_printf('0', flags);
+			n--;
+		}
+	}
+	while(str[i] && i < len)
+	{
+		ft_putchar_printf(str[i], flags);
 		i++;
 	}
-
+	if (flags->left)
+	{
+		while (n && n > 0)
+		{
+			ft_putchar_printf(' ', flags);
+			n--;
+		}
+	}
 }
