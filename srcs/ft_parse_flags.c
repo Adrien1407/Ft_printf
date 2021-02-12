@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:14:10 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/12 18:01:24 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:42:56 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_parse_flags(const char *format, t_list *flags)
 	else 
 	flags->width = atoi;
 	atoi = 0;
-	if(format[i] == '.')
+	if (format[i] == '.')
 	{
 		i++;
 		while (ft_is_in_charset(format[i], "0123456789"))
@@ -53,6 +53,8 @@ int	ft_parse_flags(const char *format, t_list *flags)
 			i++;
 		}
 		flags->precision = atoi;
+		if (flags->precision == 0)
+				flags->precision = -1;
 	}
 	ft_process_flags(flags);
 	return (i);
