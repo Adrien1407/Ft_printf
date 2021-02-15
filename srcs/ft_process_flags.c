@@ -1,57 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_process_flags.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 14:50:25 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/15 15:45:06 by adlancel         ###   ########.fr       */
+/*   Created: 2021/02/15 14:08:35 by adlancel          #+#    #+#             */
+/*   Updated: 2021/02/15 18:46:21 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_process_flags(t_list *flags)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_count_digits(long int n)
-{
-	int			i;
-
-	i = 0;
-	if (n < 0)
-		i++;
-	while (n)
+	if (flags->width < 0)
 	{
-		n = n / 10;
-		i++;
+		flags->left = -flags->width;
+		flags->width = 0;
 	}
-	return (i);
-}
-
-int	ft_is_in_charset(char c, char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-void	ft_putchar_printf(int c, t_list *flags)
-{
-	write(1, &c, 1);
-	flags->written++;
+	if (flags->width && flags->precision)
+	flags->width = flags->width - flags->precision;
+	printf("%d", flags->width);
+	if (flags->left && flags->precision)
+	flags->left = flags->left - flags->precision;
 }
