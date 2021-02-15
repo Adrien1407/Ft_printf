@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:14:10 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/12 18:42:56 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/15 13:59:19 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	ft_parse_flags(const char *format, t_list *flags)
 			flags->zero = 0;
 		}
 		if (format[i] == '0' && !flags->left)
-		{
 			flags->zero = 1;
-		}
 		i++;
 	}
 	while (ft_is_in_charset(format[i], "0123456789"))
