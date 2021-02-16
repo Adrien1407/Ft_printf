@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:57:03 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/16 16:10:07 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:55:48 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ void	ft_putnbr(long c, t_list *flags)
 		precision = flags->precision - len;
 		len = flags->precision;
 	}
-		if (flags->zero && flags->precision > 0 )
-		{
+	if (flags->zero && flags->precision > 0 )
+	{
 		flags->width = flags->zero;
 		flags->zero = 0;
-		
-		}
+	}
 	if (flags->width > len)
 	{
 		flags->width -= len + (c < 0);
@@ -52,16 +51,13 @@ void	ft_putnbr(long c, t_list *flags)
 	if (flags->zero > len)
 	{
 		flags->zero -= len + (c < 0);
-		while (flags->zero)
-		{
+		while (flags->zero--)
 			ft_putchar_printf('0', flags);
-			flags->zero--;
-		}
 	}
 	while (precision--)
 		ft_putchar_printf('0', flags);
 	if (len)
-	ft_putnbr2(c, flags);
+		ft_putnbr2(c, flags);
 	if (flags->left > len)
 	{
 		flags->left -= len + (c < 0);
