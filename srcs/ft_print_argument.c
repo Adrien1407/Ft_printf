@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:16:49 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/16 16:04:22 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:33:37 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	ft_print_argument(va_list ap, t_list *flags)
 		ft_putnbr(va_arg(ap, int), flags);
 	if (id == 'u')
 		ft_putnbr(va_arg(ap, unsigned int), flags);
+	if (id == 'c')
+		ft_printf_char(va_arg(ap, int), flags);
 }
