@@ -6,33 +6,66 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:57:03 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/11 14:57:49 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:10:07 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
+void	ft_putnbr2(long c, t_list *flags)
+{
+	if (c < 0)
+		c = -c;
+	if (c > 9)
+		ft_putnbr2(c / 10, flags);
+	c = c % 10 + 48;
+	ft_putchar_printf(c, flags);
+}
 void	ft_putnbr(long c, t_list *flags)
 {
 	int len;
+	int precision;
 
-	len = 0;
-	if(flags->width)
+	precision = 0;
+	len = ft_count_digits(c);
+	if (flags->precision == -1 && (c == 0))
+		len = 0;
+	if (flags->precision > len)
 	{
-		flags->width = flags->width - ft_count_digits(c);
-		while(flags->width > 0)
+		precision = flags->precision - len;
+		len = flags->precision;
+	}
+		if (flags->zero && flags->precision > 0 )
+		{
+		flags->width = flags->zero;
+		flags->zero = 0;
+		
+		}
+	if (flags->width > len)
 	{
-	ft_putchar_printf(' ',flags);
-	flags->width--;
-}
+		flags->width -= len + (c < 0);
+		while (flags->width--)
+			ft_putchar_printf(' ', flags);
 	}
 	if (c < 0)
-	{
-		c = -c;
 		ft_putchar_printf('-', flags);
+	if (flags->zero > len)
+	{
+		flags->zero -= len + (c < 0);
+		while (flags->zero)
+		{
+			ft_putchar_printf('0', flags);
+			flags->zero--;
+		}
 	}
-	if (c > 9)
-		ft_putnbr(c / 10, flags);
-	c = c % 10 + 48;
-	ft_putchar_printf(c, flags);
+	while (precision--)
+		ft_putchar_printf('0', flags);
+	if (len)
+	ft_putnbr2(c, flags);
+	if (flags->left > len)
+	{
+		flags->left -= len + (c < 0);
+		while (flags->left--)
+			ft_putchar_printf(' ', flags);
+	}
 }

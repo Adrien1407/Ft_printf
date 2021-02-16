@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:15:48 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/15 19:11:14 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:15:00 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,39 @@ void		ft_printf_putstr(const char *str, t_list *flags)
 	int i;
 	int len;
 	int n;
-	
+
 	i = 0;
+	if (!str)
+		str = "(null)";
 	len = ft_strlen(str);
 	n = (flags->width + flags->left + flags->zero) - len;
 	if (n < 0)
-	n = 0;
+		n = 0;
 	if (flags->precision == -1)
-		return ;
-	if (flags->precision)
-	{
-		if (flags->precision >= len)
-			flags->precision = len;
-		else
-			len = flags->precision;
-	}
+		len = 0;
+	else if (flags->precision && flags->precision < len)
+		len = flags->precision;
 	if (flags->width > len)
-		flags->width -= len;
-	else 
-		flags->width = 0;
-	if (flags->width)
 	{
-		while (n--)
+		flags->width = flags->width - len;
+		while (flags->width)
+		{
 			ft_putchar_printf(' ', flags);
-	}
-	else if (flags->zero)
-	{
-		while (n--)
-			ft_putchar_printf('0', flags);
+			flags->width--;
+		}
 	}
 	while (str[i] && i < len)
 	{
 		ft_putchar_printf(str[i], flags);
 		i++;
 	}
-	if (flags->left)
+	if (flags->left > len)
 	{
-	while (n--)
+		flags->left -= len;
+		while (flags->left)
+		{
 			ft_putchar_printf(' ', flags);
+			flags->left--;
+		}
 	}
 }

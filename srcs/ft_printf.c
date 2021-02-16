@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:57:31 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/15 19:08:03 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 16:14:43 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (ret);
 }
-/*int main ()
+/*
+int main()
 {
-ft_printf("%7.5s\n", "bombastic");
-printf("%7.5s", "bombastic");
+ft_printf("%-5s", "goes over");
+printf("%-5s", "goes over");
 }
 */

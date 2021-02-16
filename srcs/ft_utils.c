@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:50:25 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/15 15:45:06 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:54:05 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_count_digits(long int n)
 	int			i;
 
 	i = 0;
-	if (n < 0)
-		i++;
+	if (n == 0)
+		return (1);
 	while (n)
 	{
 		n = n / 10;
