@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:57:31 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/16 16:14:43 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/19 15:23:47 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,14 @@ int	ft_printf(const char *format, ...)
 	if (!flags)
 		return (0);
 	va_start(ap, format);
-	flags->precision = 0;
-	flags->width = 0;
-	flags->id = 0;
-	flags->left = 0;
+ft_init_flags(flags);
 	flags->written = 0;
 	while (format[i])
 	{
 		j = 0;
 		if (format[i] == '%' && format[i + 1])
 		{
-			j = ft_is_valid_flag(&format[i], flags);
+			j = ft_is_valid_flag(&format[i], ap,  flags);
 			if (j)
 			{
 				ft_print_argument(ap, flags);
@@ -52,10 +49,9 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (ret);
 }
-/*
-int main()
+/*int main()
 {
-ft_printf("%-5s", "goes over");
-printf("%-5s", "goes over");
+ft_printf("%-*s\n", 32,  "abc");
+printf("%-*s", 32, "abc");
 }
 */

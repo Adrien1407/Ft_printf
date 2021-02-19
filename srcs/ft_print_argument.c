@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:16:49 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/16 16:33:37 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:58:07 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ void	ft_print_argument(va_list ap, t_list *flags)
 		ft_putnbr(va_arg(ap, int), flags);
 	if (id == 'i')
 		ft_putnbr(va_arg(ap, int), flags);
+	if (id == 'x' || id == 'X')
+		ft_putnbr_base2(va_arg(ap, unsigned int), flags);
+	if (id == 'p')
+		ft_putnbr_base_address(va_arg(ap, long), flags);
 	if (id == 'u')
 		ft_putnbr(va_arg(ap, unsigned int), flags);
 	if (id == 'c')
 		ft_printf_char(va_arg(ap, int), flags);
+	if (id == '%')
+		ft_printf_char('%', flags);
 }

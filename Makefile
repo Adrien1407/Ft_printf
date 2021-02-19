@@ -6,7 +6,7 @@
 #    By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/01 15:52:08 by adlancel          #+#    #+#              #
-#    Updated: 2021/02/16 16:30:32 by adlancel         ###   ########.fr        #
+#    Updated: 2021/02/19 15:24:12 by adlancel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,13 @@ SRCS_FILES		= \
 					ft_is_valid_flag.c \
 					ft_print_argument.c \
 					ft_putnbr.c \
+					ft_putnbr_base.c \
+					ft_putnbr_base_address.c \
 					ft_printf_putstr.c \
 					ft_parse_flags.c \
 					ft_process_flags.c \
 					ft_printf_char.c \
+					ft_init_flags.c \
 
 OBJS			= ${SRCS:.c=.o}
 %.o:%.c

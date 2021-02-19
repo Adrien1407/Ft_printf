@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:50:25 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/16 15:54:05 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/19 13:54:58 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,34 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+int	ft_count_address(long int n)
+{
+	int			i;
+
+	i = 2;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n = n / 16;
+		i++;
+	}
+	return (i);
+}
+int	ft_count_hexa(long int n)
+{
+	int			i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n = n / 16;
+		i++;
+	}
+	return (i);
+}
 int	ft_count_digits(long int n)
 {
 	int			i;

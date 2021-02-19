@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 14:57:03 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/19 14:18:18 by adlancel         ###   ########.fr       */
+/*   Created: 2021/02/19 12:22:12 by adlancel          #+#    #+#             */
+/*   Updated: 2021/02/19 14:18:07 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-void	ft_putnbr_recursive(long c, t_list *flags)
+void	ft_putnbr2(long c, t_list *flags)
 {
-	if (c < 0)
-		c = -c;
-	if (c > 9)
-		ft_putnbr_recursive(c / 10, flags);
-	c = c % 10 + 48;
-	ft_putchar_printf(c, flags);
+	char *base;
+
+	base = "0123456789abcdef";
+	if (flags->id == 'X')
+		base = "0123456789ABCDEF";
+	if (c > 15)
+		ft_putnbr2((c / 16), flags);
+	ft_putchar_printf(base[c % 16], flags);
 }
-void	ft_putnbr(long c, t_list *flags)
+void	ft_putnbr_base2(long c, t_list *flags)
 {
 	int len;
 	int precision;
 
 	precision = 0;
-	len = ft_count_digits(c);
+	len = ft_count_hexa(c);
 	if (flags->precision == -1 && (c == 0))
 		len = 0;
 	if (flags->precision > len)
@@ -57,7 +59,7 @@ void	ft_putnbr(long c, t_list *flags)
 	while (precision--)
 		ft_putchar_printf('0', flags);
 	if (len)
-		ft_putnbr_recursive(c, flags);
+		ft_putnbr2(c, flags);
 	if (flags->left > len)
 	{
 		flags->left -= len + (c < 0);
