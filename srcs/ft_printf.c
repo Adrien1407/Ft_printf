@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:57:31 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/22 15:03:29 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 21:23:02 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int			ft_printf(const char *format, ...)
 	flags = malloc(sizeof(t_list));
 	if (!flags)
 		return (0);
-	va_start(ap, format);
 	ft_init_flags(flags);
+	va_start(ap, format);
 	flags->written = 0;
 	ft_printf_bis(format, ap, flags);
 	ret = flags->written;
