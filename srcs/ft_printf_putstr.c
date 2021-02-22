@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:15:48 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/22 11:43:09 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:04:40 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ void		ft_printf_putstr(const char *str, t_list *flags)
 	if (flags->width > len)
 	{
 		flags->width = flags->width - len;
-		while (flags->width--)
-			ft_putchar_printf(' ', flags);
+		ft_putchar_printf(flags->width, ' ', flags);
 	}
 	while (str[i] && i < len)
-		ft_putchar_printf(str[i++], flags);
+		ft_putchar_printf(1, str[i++], flags);
 	if (flags->left > len)
 	{
 		flags->left -= len;
-		while (flags->left--)
-			ft_putchar_printf(' ', flags);
+		ft_putchar_printf(flags->left, ' ', flags);
 	}
 }

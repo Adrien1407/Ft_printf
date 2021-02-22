@@ -6,7 +6,7 @@
 #    By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/01 15:52:08 by adlancel          #+#    #+#              #
-#    Updated: 2021/02/19 15:24:12 by adlancel         ###   ########.fr        #
+#    Updated: 2021/02/22 13:50:29 by adlancel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS_FILES		= \
 					ft_putnbr_base_address.c \
 					ft_printf_putstr.c \
 					ft_parse_flags.c \
+					ft_parsers.c \
 					ft_process_flags.c \
 					ft_printf_char.c \
 					ft_init_flags.c \
