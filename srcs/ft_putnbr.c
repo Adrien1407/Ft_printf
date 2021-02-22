@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:57:03 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/19 14:18:18 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 12:05:07 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	ft_putnbr(long c, t_list *flags)
 
 	precision = 0;
 	len = ft_count_digits(c);
+	if (((flags->zero) && ((flags->precision > 0) || (flags->precision == -1))))
+	{
+		flags->width = flags->zero;
+		flags->zero = 0;
+	}
 	if (flags->precision == -1 && (c == 0))
 		len = 0;
 	if (flags->precision > len)
 	{
 		precision = flags->precision - len;
 		len = flags->precision;
-	}
-	if (flags->zero && flags->precision > 0 )
-	{
-		flags->width = flags->zero;
-		flags->zero = 0;
 	}
 	if (flags->width > len)
 	{

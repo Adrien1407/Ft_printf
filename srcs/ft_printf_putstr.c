@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:15:48 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/19 15:00:25 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 11:43:09 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ void		ft_printf_putstr(const char *str, t_list *flags)
 {
 	int i;
 	int len;
-	int n;
 
 	i = 0;
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
-	n = (flags->width + flags->left + flags->zero) - len;
-	if (n < 0)
-		n = 0;
 	if (flags->precision == -1)
 		len = 0;
 	else if (flags->precision && flags->precision < len)
