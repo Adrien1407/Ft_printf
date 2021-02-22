@@ -6,13 +6,13 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 13:43:01 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/22 16:50:39 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:33:52 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int	ft_parse_zero_width(const char *format, va_list ap, t_list *flags)
+int			ft_parse_zero_width(const char *format, t_list *flags)
 {
 	int i;
 
@@ -31,7 +31,7 @@ int	ft_parse_zero_width(const char *format, va_list ap, t_list *flags)
 	return (i);
 }
 
-int	ft_parse_precision(const char *format, va_list ap, t_list *flags)
+int			ft_parse_precision(const char *format, va_list ap, t_list *flags)
 {
 	int i;
 	int atoi;
@@ -60,7 +60,24 @@ int	ft_parse_precision(const char *format, va_list ap, t_list *flags)
 	return (i);
 }
 
-int	ft_parse_wildcard(const char *format, va_list ap, t_list *flags)
+static int	ft_parse_numbers(const char *format, t_list *flags)
+{
+	int i;
+	int atoi;
+
+	i = 0;
+	while (ft_is_in_charset(format[i], "0123456789"))
+		atoi = atoi * 10 + format[i++] - 48;
+	if (flags->left)
+		flags->left = atoi;
+	else if (flags->zero)
+		flags->zero = atoi;
+	else
+		flags->width = atoi;
+	return (i);
+}
+
+int			ft_parse_wildcard(const char *format, va_list ap, t_list *flags)
 {
 	int i;
 	int atoi;
@@ -79,14 +96,7 @@ int	ft_parse_wildcard(const char *format, va_list ap, t_list *flags)
 	}
 	else
 	{
-		while (ft_is_in_charset(format[i], "0123456789"))
-			atoi = atoi * 10 + format[i++] - 48;
-		if (flags->left)
-			flags->left = atoi;
-		else if (flags->zero)
-			flags->zero = atoi;
-		else
-			flags->width = atoi;
+		i += ft_parse_numbers(&format[i], flags);
 	}
 	return (i);
 }

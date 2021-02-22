@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 14:08:35 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/22 16:34:46 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:18:02 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	ft_process_flags(t_list *flags)
 {
-	if (((flags->zero) && ((flags->precision > 0) || (flags->precision == -1))))
+	if (ft_is_in_charset(flags->id, "duixXp"))
 	{
-		flags->width = flags->zero;
-		flags->zero = 0;
+		if (((flags->zero) && ((flags->precision > 0)
+						|| (flags->precision == -1))))
+		{
+			flags->width = flags->zero;
+			flags->zero = 0;
+		}
 	}
 	if (flags->width < 0)
 	{

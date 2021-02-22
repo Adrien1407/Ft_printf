@@ -6,7 +6,7 @@
 /*   By: adrienlanlan <adlancel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:00:02 by adrienlan         #+#    #+#             */
-/*   Updated: 2021/02/22 16:44:42 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:07:57 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			ft_init_flags(t_list *flags);
 void			ft_printf_char(const char c, t_list *flags);
 int				ft_parse_flags(const char *format, va_list ap, t_list *flags);
 int				ft_parse_precision(const char *format, va_list ap, t_list *flags);
-int				ft_parse_zero_width(const char *format, va_list ap, t_list *flags);
+int				ft_parse_zero_width(const char *format, t_list *flags);
 int				ft_parse_wildcard(const char *format, va_list ap, t_list *flags);
 int				ft_is_valid_flag(const char *format, va_list ap,  t_list *flags);
 void			ft_print_argument(va_list ap, t_list *flags);
