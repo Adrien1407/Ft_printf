@@ -6,18 +6,18 @@
 /*   By: adrienlanlan <adlancel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:00:02 by adrienlan         #+#    #+#             */
-/*   Updated: 2021/02/22 17:07:57 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:59:06 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PRINTF_H
+#ifndef PRINTF_H
 # define PRINTF_H
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 
 typedef	struct	s_list
 {
@@ -32,10 +32,13 @@ void			ft_process_flags(t_list *flags);
 void			ft_init_flags(t_list *flags);
 void			ft_printf_char(const char c, t_list *flags);
 int				ft_parse_flags(const char *format, va_list ap, t_list *flags);
-int				ft_parse_precision(const char *format, va_list ap, t_list *flags);
+int				ft_parse_precision(const char *format, va_list ap,
+		t_list *flags);
 int				ft_parse_zero_width(const char *format, t_list *flags);
-int				ft_parse_wildcard(const char *format, va_list ap, t_list *flags);
-int				ft_is_valid_flag(const char *format, va_list ap,  t_list *flags);
+int				ft_parse_wildcard(const char *format, va_list ap,
+		t_list *flags);
+int				ft_is_valid_flag(const char *format, va_list ap,
+		t_list *flags);
 void			ft_print_argument(va_list ap, t_list *flags);
 int				ft_is_in_charset(char c, char *str);
 size_t			ft_strlen(const char *s);

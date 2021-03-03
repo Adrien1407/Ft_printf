@@ -6,7 +6,7 @@
 /*   By: adlancel <adlancel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:57:31 by adlancel          #+#    #+#             */
-/*   Updated: 2021/02/22 21:23:02 by adlancel         ###   ########.fr       */
+/*   Updated: 2021/03/03 18:33:00 by adlancel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_printf_bis(const char *format, va_list ap, t_list *flags)
 		j = 0;
 		if (format[i] == '%' && format[i + 1])
 		{
+			ft_init_flags(flags);
 			j = ft_is_valid_flag(&format[i], ap, flags);
 			if (j)
 			{
